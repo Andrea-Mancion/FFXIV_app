@@ -6,10 +6,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String selectedUsername = '';
+  String username = '';
   String password = '';
-
-  final List<String> usernames = ['user1', 'user2', 'user3'];
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +21,10 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            DropdownButtonFormField(
-              value: selectedUsername.isEmpty ? null : selectedUsername,
-              items: usernames.map((String username) {
-                return DropdownMenuItem(
-                  value: username,
-                  child: Text(username),
-                );
-              }).toList(),
-              onChanged: (String? value) {
+            TextFormField(
+              onChanged: (value) {
                 setState(() {
-                  selectedUsername = value ?? '';
+                  username = value;
                 });
               },
               decoration: InputDecoration(
@@ -58,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 // Perform login logic here using selectedUsername and password
-                print('Username: $selectedUsername');
+                print('Username: $username');
                 print('Password: $password');
               },
               child: Text('Login'),

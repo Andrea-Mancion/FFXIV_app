@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'loginPage.dart';
+import 'registerPage.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -36,7 +37,10 @@ class WelcomePage extends StatelessWidget {
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                // Navigate to the registration page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegisterPage()),
+                );
               },
               child: Text('Register'),
             ),
