@@ -11,6 +11,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String username = '';
   String password = '';
   String confirmPassword = '';
+  String name = 'FFXIV_app';
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ElevatedButton(
               onPressed: () {
                 if (password == confirmPassword) {
-                  sendRegister(username, password);
+                  sendRegister(username, password, name);
                 } else {
                   print('Passwords do not match');
                 }
@@ -79,14 +80,14 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 }
 
-Future<void> sendRegister(String username, String password) async {
-    final Uri uri = Uri.parse('http://localhost:3000/register');
+Future<void> sendRegister(String username, String password, String name) async {
+    final Uri uri = Uri.parse('http://localhost:8082/register');
 
     try {
         final response = await http.post(
             uri,
             headers: {'Content-Type': 'application/json'}, // Specify the Content-Type header
-            body: jsonEncode({'username': username, 'password': password}), // Encode the body as JSON
+            body: jsonEncode({'username': username, 'password': password, 'name': name}), // Encode the body as JSON
         );
 
         if (response.statusCode == 200)
